@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17243d">
+  <meta name="description" content="Tra cứu sách Giấc ngủ — Liều thuốc bổ cho cuộc sống. Tìm kiếm không dấu, đọc theo mục lục, đánh dấu và ghi chú riêng.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Giấc ngủ">
+  <meta name="color-scheme" content="light dark">
+  <title>Giấc ngủ · Tra cứu sách</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Đến nội dung chính</a>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A9 9 0 0 1 9.5 3.5a9 9 0 1 0 11 11Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Z"/><path d="M12 5v15"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.1M3 12h.1M3 18h.1"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4V3Z"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2.2"/><circle cx="16" cy="12" r="2.2"/><circle cx="10" cy="18" r="2.2"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 3H4v18h16V11M13 12l-1 4 4-1 6-6-3-3-6 6Z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H3V8h18v9h-4M7 14h10v7H7Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+
+  <header class="app-header">
+    <a class="brand" href="#/search" aria-label="Giấc ngủ, trang tra cứu"><span class="brand-mark"><svg class="icon"><use href="#i-moon"/></svg></span><span><strong>Giấc ngủ</strong><small>Thư viện tra cứu</small></span></a>
+    <div class="header-actions"><span id="networkBadge" class="status-badge">Đang mở sách</span><button class="button button-primary install-top" id="installTop" type="button" hidden>Cài ứng dụng</button></div>
+  </header>
+  <nav class="main-nav" aria-label="Điều hướng chính">
+    <a href="#/search" data-view="search" class="nav-item active"><svg class="icon"><use href="#i-search"/></svg><span>Tra cứu</span></a>
+    <a href="#/contents" data-view="contents" class="nav-item"><svg class="icon"><use href="#i-list"/></svg><span>Mục lục</span></a>
+    <a href="#/saved" data-view="saved" class="nav-item"><svg class="icon"><use href="#i-save"/></svg><span>Đã lưu</span><span id="savedBadge" class="nav-count" hidden>0</span></a>
+    <a href="#/settings" data-view="settings" class="nav-item"><svg class="icon"><use href="#i-settings"/></svg><span>Tùy chọn</span></a>
+    <div class="sidebar-book"><svg class="icon"><use href="#i-book"/></svg><p>Liều thuốc bổ<br>cho cuộc sống</p><small>BS. Minh Tuấn<br>Khánh Hương</small></div>
+  </nav>
+
+  <main id="main" class="main-content" tabindex="-1">
+    <div id="loading" class="loading-panel" role="status"><span class="loader"></span><h1>Đang mở cuốn sách…</h1><p>Nội dung sẽ được lưu để đọc ngoại tuyến.</p></div>
+    <div id="loadError" class="empty-state" hidden><svg class="icon"><use href="#i-info"/></svg><h1>Chưa mở được sách</h1><p id="loadErrorMessage">Hãy kiểm tra kết nối rồi thử lại.</p><button class="button button-primary" id="retryLoad" type="button">Thử lại</button></div>
+
+    <section id="view-search" class="view" hidden aria-labelledby="searchHeading">
+      <div class="library-intro"><div class="intro-copy"><span class="eyebrow">ĐỌC VÀ TRA CỨU</span><h1 id="searchHeading">Giấc ngủ</h1><p class="book-subtitle">Liều thuốc bổ cho cuộc sống</p><p class="intro-description">Tìm một điều cần biết. Mở đúng mục trong sách.</p><div class="book-stats" id="bookStats"></div></div><div class="night-illustration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="moon-shape"></span><span class="star star-one">✦</span><span class="star star-two">✦</span><span class="star star-three">·</span><span class="horizon-line"></span></div></div>
+      <div class="search-panel">
+        <form id="searchForm" role="search" autocomplete="off"><label class="sr-only" for="searchInput">Tìm trong cuốn sách</label><div class="search-box"><svg class="icon"><use href="#i-search"/></svg><input id="searchInput" type="search" placeholder="Mất ngủ, ngủ trưa, trẻ nhỏ…" maxlength="180" enterkeyhint="search"><button id="clearSearch" class="icon-button" type="button" aria-label="Xóa từ khóa" hidden><svg class="icon"><use href="#i-close"/></svg></button></div></form>
+        <div class="search-tools"><div class="search-scopes" aria-label="Phạm vi tìm kiếm"><button type="button" data-mode="all" class="scope-button active" aria-pressed="true">Toàn bộ nội dung</button><button type="button" data-mode="title" class="scope-button" aria-pressed="false">Chỉ tiêu đề</button></div><span class="search-hint">Tìm có dấu hoặc không dấu</span></div>
+        <div class="example-searches" id="examples"><span>Thử tìm</span><button type="button" data-query="ngủ trưa">ngủ trưa</button><button type="button" data-query="đồng hồ sinh học">đồng hồ sinh học</button><button type="button" data-query="ngáy">ngáy</button></div>
+        <div class="filters"><label>Phần trong sách<select id="partFilter"><option value="">Tất cả phần</option></select></label><label id="articleWrap" hidden>Mục chính<select id="articleFilter"><option value="">Tất cả mục</option></select></label><label class="sort-filter">Sắp xếp<select id="sortFilter"><option value="relevance">Phù hợp từ khóa</option><option value="book">Thứ tự trong sách</option></select></label></div>
+      </div>
+      <div class="results-heading"><h2 id="resultCount" aria-live="polite"></h2><button type="button" id="resetFilters" class="text-button" hidden>Xóa bộ lọc</button></div><div id="results" class="entry-grid"></div><button type="button" id="loadMore" class="button button-outline load-more" hidden>Xem thêm</button>
+    </section>
+
+    <section id="view-contents" class="view" hidden aria-labelledby="contentsHeading"><div class="page-heading"><span class="eyebrow">THEO THỨ TỰ CUỐN SÁCH</span><h1 id="contentsHeading">Mục lục</h1><p>Chọn một phần để xem các mục. Mở mục chính để đọc đầy đủ các tiểu mục bên trong.</p></div><div id="contentsList" class="contents-list"></div></section>
+    <section id="view-saved" class="view" hidden aria-labelledby="savedHeading"><div class="page-heading"><span class="eyebrow">GÓC ĐỌC CỦA BẠN</span><h1 id="savedHeading">Những mục muốn đọc lại</h1><p>Dấu trang và ghi chú được giữ trên thiết bị này.</p></div><div class="saved-tabs" aria-label="Danh sách cá nhân"><button type="button" data-saved-tab="favorites" aria-pressed="true" class="active">Đã đánh dấu</button><button type="button" data-saved-tab="recent" aria-pressed="false">Vừa xem</button><button type="button" data-saved-tab="notes" aria-pressed="false">Có ghi chú</button></div><p id="savedCount" class="muted"></p><div id="savedResults" class="entry-grid"></div></section>
+
+    <section id="view-settings" class="view" hidden aria-labelledby="settingsHeading">
+      <div class="page-heading"><span class="eyebrow">TÙY CHỌN</span><h1 id="settingsHeading">Đọc theo cách của bạn</h1><p>Chọn cách hiển thị, cài lên điện thoại và giữ bản sao ghi chú.</p></div>
+      <div class="settings-grid">
+        <section class="settings-card"><h2>Hiển thị</h2><label for="themeSelect">Giao diện</label><select id="themeSelect"><option value="system">Theo thiết bị</option><option value="light">Sáng</option><option value="dark">Tối</option></select><div class="setting-row"><span>Cỡ chữ khi đọc</span><div class="font-controls"><button type="button" class="icon-button" id="fontSmaller" aria-label="Giảm cỡ chữ">A−</button><output id="fontValue">18</output><button type="button" class="icon-button" id="fontLarger" aria-label="Tăng cỡ chữ">A+</button></div></div><p class="reading-preview">Giấc ngủ — Liều thuốc bổ cho cuộc sống.</p></section>
+        <section class="settings-card"><h2>Cài trên điện thoại</h2><p>Mở từ màn hình chính để tìm lại cuốn sách thuận tiện hơn.</p><button id="installSettings" class="button button-primary" type="button"><svg class="icon"><use href="#i-download"/></svg>Cài hoặc xem hướng dẫn</button><div class="install-instructions"><p><strong>Android · Chrome</strong><br>Mở menu ⋮, chọn Cài đặt hoặc Thêm vào màn hình chính.</p><p><strong>iPhone · Safari</strong><br>Chia sẻ, chọn Thêm vào Màn hình chính rồi Thêm.</p></div></section>
+        <section class="settings-card"><h2>Đọc ngoại tuyến</h2><p id="offlineStatus">Đang kiểm tra dữ liệu trên thiết bị…</p><p class="muted">Sau khi tải xong lần đầu, bạn có thể tìm kiếm và đọc nội dung sách khi không có mạng.</p><div class="button-stack"><button id="checkUpdate" type="button" class="button button-outline">Kiểm tra phiên bản mới</button><button id="cacheSource" type="button" class="button button-outline"><svg class="icon"><use href="#i-download"/></svg>Lưu tệp Word nguồn</button></div><p id="sourceCacheStatus" class="muted small"></p></section>
+        <section class="settings-card"><h2>Sao lưu dấu trang và ghi chú</h2><p>Xuất bản sao để giữ lại hoặc mang sang điện thoại khác. Dữ liệu riêng chưa tự đồng bộ giữa các thiết bị.</p><div class="button-stack"><button id="exportBackup" type="button" class="button button-outline"><svg class="icon"><use href="#i-download"/></svg>Xuất bản sao lưu</button><button id="importBackup" type="button" class="button button-outline"><svg class="icon"><use href="#i-upload"/></svg>Nhập và gộp bản sao</button></div><input id="backupFile" type="file" accept=".json,application/json" class="sr-only" tabindex="-1"><p class="muted small">Khi nhập, dấu trang và ghi chú đang có vẫn được giữ.</p></section>
+        <section class="settings-card about-card"><span class="eyebrow">VỀ CUỐN SÁCH</span><h2>Giấc ngủ — Liều thuốc bổ cho cuộc sống</h2><p><strong>BS. Minh Tuấn – Khánh Hương</strong><br>Tổng hợp, biên soạn · Nhà xuất bản Hồng Đức</p><p>Ứng dụng sắp xếp nội dung từ tệp Word bạn cung cấp thành các phần, mục và tiểu mục để tìm đọc. Nội dung sức khỏe được giữ theo tài liệu, chưa được thẩm định lại và không thay thế tư vấn chuyên môn.</p><div id="bookSourceNotes" class="source-notes" hidden></div><div class="button-stack"><a id="sourceLink" class="button button-outline" href="/source/Giac_Ngu_Nguon.docx" download="Giac_Ngu_Nguon.docx"><svg class="icon"><use href="#i-book"/></svg>Tải tệp Word nguồn</a></div><small id="versionInfo" class="version-info">Ứng dụng 1.0 · Tiếng Việt</small></section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="entryDialog" class="entry-dialog" aria-labelledby="detailTitle"><div class="detail-toolbar"><button type="button" id="closeDetail" class="button button-quiet"><svg class="icon"><use href="#i-close"/></svg>Đóng</button><div class="detail-actions"><button type="button" id="detailSave" class="icon-button" aria-label="Đánh dấu mục" aria-pressed="false"><svg class="icon"><use href="#i-save"/></svg></button><button type="button" id="detailShare" class="icon-button" aria-label="Chia sẻ liên kết mục"><svg class="icon"><use href="#i-share"/></svg></button><button type="button" id="detailPrint" class="icon-button desktop-print" aria-label="In nội dung đang đọc"><svg class="icon"><use href="#i-print"/></svg></button></div></div><article id="detailContent" class="detail-content"></article><section class="personal-note"><div class="note-heading"><h2><svg class="icon"><use href="#i-note"/></svg>Ghi chú riêng</h2><span id="noteStatus" class="muted small"></span></div><p id="noteContext" class="note-context"></p><label for="entryNote" class="sr-only">Ghi chú riêng cho mục đang xem</label><textarea id="entryNote" rows="4" maxlength="10000" placeholder="Viết điều bạn muốn ghi nhớ…"></textarea><p class="muted small">Tự lưu trên thiết bị. Ghi chú không thay đổi nội dung sách.</p></section><div class="detail-bottom"><button type="button" id="previousEntry" class="button button-outline">Mục trước</button><button type="button" id="nextEntry" class="button button-outline">Mục tiếp</button></div></dialog>
+  <dialog id="installDialog" class="help-dialog" aria-labelledby="installTitle"><button id="closeInstall" class="icon-button dialog-close" type="button" aria-label="Đóng hướng dẫn"><svg class="icon"><use href="#i-close"/></svg></button><span class="install-mark"><svg class="icon"><use href="#i-moon"/></svg></span><h2 id="installTitle">Giữ sách trên màn hình chính</h2><div id="installHelp"></div><button type="button" id="installDone" class="button button-primary">Đã hiểu</button></dialog>
+  <div id="updateBar" class="update-bar" hidden><span>Có phiên bản mới. Dấu trang và ghi chú vẫn được giữ.</span><button id="applyUpdate" type="button" class="button button-primary">Cập nhật</button><button id="dismissUpdate" type="button" class="icon-button" aria-label="Để sau"><svg class="icon"><use href="#i-close"/></svg></button></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><div class="empty-state">Ứng dụng cần JavaScript để tra cứu. Bạn có thể <a href="/source/Giac_Ngu_Nguon.docx">tải tệp Word nguồn</a> để đọc.</div></noscript>
+</body>
+</html>
